@@ -1,0 +1,93 @@
+/*
+ * CS 261: P4 Mini-ELF Interpreter Main driver
+ *
+ * Name: MUST  WRITE YOUR  FULL NAME HERE 
+ *    or risk losing points, and delays when you seek my help during office hours 
+ */
+
+#include /* any  required standard library <.h> file.  */
+
+#include "p1-check.h"
+#include "p2-load.h"
+#include "p3-disas.h"
+#include "p4-interp.h"
+#include "y86.h"
+#include "elf.h"
+
+
+/*-------------------------------------------------------------------------*/
+
+int main (int argc, char **argv)
+{
+    // Parse command line and check for failure
+    if ( ! parse_command_line_p4 ( /* ... */  ) )
+        exit( EXIT_FAILURE );
+
+    //
+    //   code from previous projects
+    //
+    
+    
+    // ==== Begin Project 4 Solution  =====
+  
+    if ( Normal_Execute_Mode || Debug_Trace_Mode ) 
+    {
+        y86_t          cpu ;
+        y86_inst_t     ins ;
+        // other variables as needed
+
+        // initialize CPU state
+        // ....
+
+        printf("Entry execution point at 0x%04lx\n", cpu.pc );
+        printf( "Initial " ); 
+        // ...
+
+        // Start the von Neumann cycle       
+        while ( cpu.stat == AOK ) 
+        {
+            // Fetch next instruction
+            ins = // ..... 
+            if( INVALID instruction ) 
+            {
+                printf("Corrupt Instruction at address 0x%04x\n" , /* ... */  );
+                // ....
+                break ;
+            }
+            if ( Debug_Trace_Mode )
+            { 
+                printf("Executing: ");   
+                // ... 
+            }
+
+            // Decode-Execute
+            valE = decode_execute( /* .... */ );
+
+            // memory writeback & pc update
+            memory_wb_pc( /* ... */ );
+            
+            if ( ! AOK || Debug_Trace_Mode )
+            {
+                printf( "Post-Exec " ); 
+                // .... 
+            }
+
+            // ....
+
+        }
+      
+        printf("Total execution count: %ld instructions\n\n", /* ... */ );
+
+        if ( Debug_Trace_Mode )
+        {
+            // ....
+        }
+    }
+
+    
+    // Release the dynamic memory back to the Heap and Close any open files
+    // ....
+    
+    return EXIT_SUCCESS;    
+
+}
